@@ -14,10 +14,9 @@ A comprehensive monitoring system that automatically detects when Roblox crashes
 
 ## Quick Start
 
-1. **Install Python Requirements**
-   ```bash
-   pip install requests
-   ```
+1. **Download the Files**
+   - Download all files to a folder on your computer
+   - No manual installation needed - dependencies auto-install!
 
 2. **Setup Roblox Account Manager**
    - Ensure RAM is running with API enabled (default port 7963)
@@ -31,9 +30,22 @@ A comprehensive monitoring system that automatically detects when Roblox crashes
    ```bash
    python monitor_ui.py
    ```
+   *Note: Missing dependencies will be automatically installed on first run*
 
 5. **Add Heartbeat Script**
    - Copy `roblox_heartbeat.lua` to your Roblox game's ServerScriptService
+
+## Installation Options
+
+### Automatic (Recommended)
+Simply run `python monitor_ui.py` - missing packages will be installed automatically.
+
+### Manual Installation
+If you prefer manual control:
+```bash
+pip install -r requirements.txt
+python monitor_ui.py
+```
 
 ## User Interface Guide
 
@@ -158,6 +170,7 @@ roblox-monitor/
 ├── monitor_ui.py           # Main GUI application
 ├── roblox_monitor_no_ui.py # Console-only version
 ├── roblox_heartbeat.lua    # Roblox game script
+├── requirements.txt        # Python dependencies
 ├── monitor_config.json     # Auto-generated config file
 └── README.md              # This documentation
 ```

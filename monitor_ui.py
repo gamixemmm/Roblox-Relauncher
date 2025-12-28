@@ -1,3 +1,48 @@
+import sys
+import subprocess
+
+def check_and_install_requirements():
+    """Check for required packages and install them if missing"""
+    required_packages = ['requests']
+    missing_packages = []
+    
+    for package in required_packages:
+        try:
+            __import__(package)
+        except ImportError:
+            missing_packages.append(package)
+    
+    if missing_packages:
+        print(f"Missing required packages: {', '.join(missing_packages)}")
+        print("Installing missing packages...")
+        
+        try:
+            # Try to install using pip
+            for package in missing_packages:
+                print(f"Installing {package}...")
+                subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+            
+            print("All packages installed successfully!")
+            print("Please restart the application.")
+            return False  # Indicate restart needed
+            
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to install packages: {e}")
+            print("Please install manually using: pip install -r requirements.txt")
+            input("Press Enter to continue anyway...")
+            return True  # Continue despite missing packages
+        except Exception as e:
+            print(f"Error during installation: {e}")
+            print("Please install manually using: pip install -r requirements.txt")
+            input("Press Enter to continue anyway...")
+            return True
+    
+    return True  # All packages available
+
+# Check and install requirements before importing other modules
+if not check_and_install_requirements():
+    sys.exit(0)
+
 import tkinter as tk
 from tkinter import ttk
 import threading
